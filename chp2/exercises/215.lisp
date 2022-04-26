@@ -1,0 +1,11 @@
+(format t "CAR ((A B)(C D)(E F)):  ~a ~%" (car  '((A B)(C D)(E F))))
+(format t "CDDR ((A B)(C D)(E F)):  ~a ~%" (cddr  '((A B)(C D)(E F))))
+(format t "CADR ((A B)(C D)(E F)):  ~a ~%" (cadr  '((A B)(C D)(E F))))
+(format t "CDAR ((A B)(C D)(E F)):  ~a ~%" (cdar  '((A B)(C D)(E F))))
+(format t "CADAR ((A B)(C D)(E F)):  ~a ~%" (cadar  '((A B)(C D)(E F))))
+(format t "CDDAR ((A B)(C D)(E F)):  ~a ~%" (cddar  '((A B)(C D)(E F))))
+(format t "CAAR ((A B)(C D)(E F)):  ~a ~%" (caar  '((A B)(C D)(E F))))
+(format t "CDADDR ((A B)(C D)(E F)):  ~a ~%" (cdaddr  '((A B)(C D)(E F))))
+; (format t "CADADDR ((A B)(C D)(E F)):  ~a ~%" (cadaddr  '((A B)(C D)(E F))))
+
+(format t "CADADDR (FRED NIL)):  ~a ~%" (caar '(FRED NIL)))
