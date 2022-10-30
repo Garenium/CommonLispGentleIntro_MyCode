@@ -1,6 +1,6 @@
 (format t "list ok: ~a ~%" (list 'ok)) 
-(format t "list ok: ~a ~%" (list 'ok '(yes)))
-(format t "list ok: ~a ~%" (list 'ok 'yes))
+(format t "list ok (yes): ~a ~%" (list 'ok '(yes)))
+(format t "list ok yes: ~a ~%~%" (list 'ok 'yes))
 
 ;;;cons create cons cells
 (format t "cons zort n ~a ~%" (cons 'zort 'n)) ;;cons zort n (ZORT . N)
@@ -10,7 +10,7 @@
 ;;;ZORT
 
 ;;;list create a cons(es) CHAIN
-(format t "cons zort n ~a ~%" (list 'zort 'n)) ;;cons zort n (ZORT N)
+(format t "cons zort n ~a ~%~%" (list 'zort 'n)) ;;cons zort n (ZORT N)
 ;;; o---> o ---> NIL
 ;;; |     |
 ;;; V     V

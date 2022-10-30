@@ -1,5 +1,13 @@
 (setq *print-case* :downcase)
 
+#|| 
+    | o | o |----->cdr cell
+      |
+      |
+      V
+   car cell
+||#
+
 (format t "cadr (fee fie foe fum): ~a ~%" (cadr '(fee fie foe fum)))
 (format t "caddr (fee fie foe fum): ~a ~%" (caddr '(fee fie foe fum)) )
 (format t "cadddr (fee fie foe fum): ~a ~%~%" (cadddr '(fee fie foe fum)) )
