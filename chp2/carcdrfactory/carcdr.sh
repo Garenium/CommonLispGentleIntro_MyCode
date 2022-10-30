@@ -3,29 +3,55 @@
 #This script helps you to "see" car and cdr combo by printing out 
 #the list's car and cdr one by one. It is done (in order) from right to left.
 
+#check if the file input.lisp exists
 FILE=./input.lisp
 if ! [[ -f "$FILE" ]]; then
    echo "$FILE creating..."
    > $FILE
 fi
 
-#prompt user for input
 let input 
-echo "Please write a lisp code: "
-read input 
 
-#write input to a file
-echo "$input" > $FILE
+#allow input from terminal
+#else from file directly
+if [[ $1 == '-i' ]]; then
+   #prompt user for input
+   echo "Please write a lisp code: "
+   read input 
 
-#use the file to get awk output
-output=$(awk '
-match($0, /c[ad]*r/) {
-   print substr($0, RSTART, RLENGTH)}
-   ' $FILE)
+   #write input to a file
+   echo "$input" > $FILE
+else 
+   input=$(cat $FILE)
+fi
 
-echo "$output"
+echo "input: $input"
 
-code=$(cat "$FILE")
+#get the lisp function (car, cdr or any of the combo)
+function=$(
+awk 'match($0, /c[ad]*r/) {
+   print substr($0, RSTART, RLENGTH)
+}' $FILE)
 
-# echo "$code"
+echo "function: $function"
 
+#start replacing characters one by one
+#For example:
+#caadr --> run
+#caar ---> run
+#etc.
+#car ----> run
+#stops
+
+echo ""
+
+clisp $FILE
+
+#bash is not made for this
+replacer=""
+for (( i = ${#function}-2; i > 1; i-- )); do
+   # echo "${function:$i:1}"
+   echo "$function"
+   echo ${input//${function:$i:1}/''} > $FILE #replace characters here
+   clisp $FILE
+done
