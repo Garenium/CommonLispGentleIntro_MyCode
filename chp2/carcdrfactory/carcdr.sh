@@ -5,9 +5,12 @@
 
 #check if the file input.lisp exists
 FILE=./input.lisp
-if ! [[ -f "$FILE" ]]; then
+FILEC=./main.cpp
+if ! [[ -f "$FILE" ]] && ! [[ -f "$FILEC" ]]; then
    echo "$FILE creating..."
+   echo "$FILEC creaating..."
    > $FILE
+   > $FILEC
 fi
 
 let input 
@@ -23,6 +26,15 @@ if [[ $1 == '-i' ]]; then
    echo "$input" > $FILE
 else 
    input=$(cat $FILE)
+fi
+
+lines=$(wc -l < input.lisp)
+echo "$lines"
+
+#check num of lines in $FILE
+if (( $lines > 1 )); then
+   echo "file \"$FILE\" has invalid number of lines"
+   exit
 fi
 
 echo "input: $input"
@@ -45,13 +57,27 @@ echo "function: $function"
 
 echo ""
 
-clisp $FILE
+g++ main.cpp -g
 
-#bash is not made for this
-replacer=""
-for (( i = ${#function}-2; i > 1; i-- )); do
-   # echo "${function:$i:1}"
-   echo "$function"
-   echo ${input//${function:$i:1}/''} > $FILE #replace characters here
-   clisp $FILE
-done
+if [[ $1 = '-d' ]]; then
+   gdb --args ./a.out "$input" "$function"
+else
+   ./a.out "$input" "$function"
+fi
+
+
+
+
+
+# python3 python.py "$input" "$function"
+
+#clisp $FILE
+
+##bash is not made for this
+#replacer=""
+#for (( i = ${#function}-2; i > 1; i-- )); do
+#   # echo "${function:$i:1}"
+#   echo "$function"
+#   echo ${input//${function:$i:1}/''} > $FILE #replace characters here
+#   clisp $FILE
+#done
