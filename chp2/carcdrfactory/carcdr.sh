@@ -1,4 +1,4 @@
-#!/bin/bash
+#"!/bin/bash
 
 #This script helps you to "see" car and cdr combo by printing out 
 #the list's car and cdr one by one. It is done (in order) from right to left.
@@ -66,14 +66,9 @@ else
 fi
 
 
-
-
-
-# python3 python.py "$input" "$function"
-
 #clisp $FILE
 
-##bash is not made for this
+##bash is not made for this...
 #replacer=""
 #for (( i = ${#function}-2; i > 1; i-- )); do
 #   # echo "${function:$i:1}"
