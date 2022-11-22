@@ -1,1 +1,1 @@
-(format t ~a ~% (cr '(1 4 62 6)))
+(format t "~a ~%" (cddar '(1 2 4 5)))

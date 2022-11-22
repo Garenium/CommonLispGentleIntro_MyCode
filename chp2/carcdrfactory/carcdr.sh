@@ -29,11 +29,11 @@ else
 fi
 
 lines=$(wc -l < input.lisp)
-echo "$lines"
+echo "number of lines: $lines"
 
 #check num of lines in $FILE
 if (( $lines > 1 )); then
-   echo "file \"$FILE\" has invalid number of lines"
+   echo "file \"$FILE\" has invalid number of lines. There must be one line."
    exit
 fi
 
